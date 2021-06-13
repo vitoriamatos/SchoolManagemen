@@ -20,10 +20,12 @@ if($action == 'insert'){
     $professorService->insert();
 
 
-    header('Location: ..\student_register.php?include=1');
+    header('Location: ..\registro_professor.php?include=1');
 
 
-}else if($action == 'recover'){
+} 
+
+if($action == 'recover'){
 
     require "..\private_directory\models\Professor.php";
     require "..\private_directory\services\ProfessorService.php";

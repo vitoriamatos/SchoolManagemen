@@ -20,7 +20,7 @@ if($action == 'insert'){
     $classesService->insert();
 
 
-    header('Location: ..\classes_register.php?include=1');
+    header('Location: ..\registro_turma.php?include=1');
 
 
 }

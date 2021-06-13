@@ -8,8 +8,9 @@ if($action == 'insert'){
     require "..\..\private_directory\services\TaskService.php";
     require "..\..\private_directory\Connection.php";
     
-    $task = new Task(); // recover the task obj and the database conection 
+    $task = new Task(); 
     $task->__set('task', $_POST['task']);
+    $task->__set('discipline',intval( $_POST['discipline']));
 
     $connection = new Connection();
 
@@ -17,7 +18,7 @@ if($action == 'insert'){
     $taskService->insert();
 
 
-    header('Location: ..\nova_tarefa.php?include=1');
+    header('Location: ..\registro_tarefa.php?include=1');
 
 
 }else if($action == 'recover'){
@@ -70,7 +71,7 @@ if($action == 'insert'){
         header('location: ..\index.php');
 
     }else{
-        header('location: ..\todas_tarefas.php');
+        header('location: ..\lista_tarefas.php');
     }
    
 
@@ -92,7 +93,7 @@ if($action == 'insert'){
         header('location: ..\index.php');
 
     }else{
-        header('location: ..\todas_tarefas.php');
+        header('location: ..\lista_tarefas.php');
     }
 
 }else if($action == 'backupPending'){

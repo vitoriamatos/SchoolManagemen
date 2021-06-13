@@ -4,10 +4,11 @@
 
 private $id;
 private $name; 
-private $schedule; 
+private $code;
 private $days;
+private $schedule; 
 private $professor;
-private $student;
+
 
 
 public function  __get($atribute){

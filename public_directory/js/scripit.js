@@ -54,13 +54,13 @@ function edit(id, description) {
 }
 
 function remove(id) {
-    location.href = 'todas_tarefas.php?action=remove&id='+id;
+    location.href = 'lista_tarefas.php?action=remove&id='+id;
 
 }
 
 function checkDone(id){
 
-    location.href = 'todas_tarefas.php?action=checkDone&id='+id;
+    location.href = 'lista_tarefas.php?action=checkDone&id='+id;
 
 }
 

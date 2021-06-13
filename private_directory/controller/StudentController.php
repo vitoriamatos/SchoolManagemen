@@ -21,7 +21,7 @@ if($action == 'insert'){
     $studentService->insert();
 
 
-    header('Location: ..\student_register.php?include=1');
+    header('Location: ..\registro_estudante.php?include=1');
 
 
 }else if($action == 'recover'){

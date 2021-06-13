@@ -1,22 +1,20 @@
 <?php
-
-$action = 'backupPending';
+$action = 'recover';
 define('ROOT_PATH', dirname(__FILE__));
 chdir(ROOT_PATH);
-require ROOT_PATH . '\controller\TaskController.php';
+require ROOT_PATH . '\controller\DisciplineController.php';
 ?>
 
 <html>
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Colégio BD</title>
+		<title>App Lista Tarefas</title>
 
-		<script type="text/javascript" src="js/scripit.js"></script>
 		<link rel="stylesheet" href="view/css/style.css">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-
+		
 		<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
 	
@@ -71,5 +69,58 @@ require ROOT_PATH . '\controller\TaskController.php';
         </div>
     </nav>
 </div>
+		<?php if(isset($_GET['include']) && $_GET['include'] == 1): ?>
+			<div class="bg-success pt-2 text-white d-flex justify-content-center">
+					<h5>Tarefa inserida com sucesso</h5>
+			</div>
+		<?php endif ?>
+		<div class="container app">
+			<div class="row">
+				<div class="col-md-3 menu">
+					<ul class="list-group">
+						<li class="list-group-item active"><a href="registro_professor.php">Cadastro</a></li>
+						<li class="list-group-item"><a href="lista_professores.php">Todos os Professores</a></li>
+						<li class="list-group-item "><a href="registro_tarefa.php">Cadastrar Tarefa</a></li>
+						<li class="list-group-item"><a href="lista_tarefas.php">Todas Tarefas</a></li>
+						<li class="list-group-item"><a href="tarefa_pendente.php">Tarefas pendentes</a></li>
+					</ul>
+				</div>
+
+				<div class="col-md-9">
+					<div class="container pagina">
+						<div class="row">
+							<div class="col">
+								<h4>Nova tarefa</h4>
+								<hr />
+
+								<form method="post" action="controller\TaskController.php?action=insert">
+									<div class="form-group">
+
+									<div class ="row">
+										
+										<div class = "col-md-6">
+										<label>Disciplina:</label>
+										<select class="form-control" name="discipline">
+											<?php foreach ($disciplines as $index => $value): ?>
+											<option value="<?=$value->id?>"><?=$value->name?></option>
+											<?php endforeach ?>
+										</select>			
+										</div>
+										<div class = "col-md-12">
+										<label>Descrição da tarefa:</label>
+										<input type="text" class="form-control" name="task" placeholder="Exemplo: Estudar o cap 12">
+										</div>
+										</div>
+									</div>
+
+									<button class="btn btn-success">Cadastrar</button>
+									
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</body>
 </html>

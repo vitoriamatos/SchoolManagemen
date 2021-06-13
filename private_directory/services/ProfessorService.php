@@ -5,7 +5,7 @@ class ProfessorService {
        CRUD OPERATION
     */
     private $connection;
-    private $profesor;
+    private $professor;
 
 
     public function __construct(Connection $connection, Professor $professor){
@@ -15,7 +15,7 @@ class ProfessorService {
     
 
     public function insert(){
-        $query = 'insert into professors(name, bornRegister, gender, cpf, discipline)values(?,?,?,?,?)';
+        $query = 'insert into professors(name, bornRegister, gender, cpf)values(?,?,?,?)';
         $stmt = $this->connection->prepare($query);
         $stmt->bindValue(1, $this->professor->__get('name'));
         $stmt->bindValue(2, $this->professor->__get('bornRegister'));
@@ -25,7 +25,7 @@ class ProfessorService {
     }
 
     public function backup(){
-        $query = 'SELECT name FROM professors';
+        $query = 'SELECT id,name FROM professors';
         $stmt = $this->connection->prepare($query);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_OBJ); // for object array return 

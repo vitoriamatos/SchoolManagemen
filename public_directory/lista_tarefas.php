@@ -1,10 +1,21 @@
+<?php
 
+$action = 'recover';
+define('ROOT_PATH', dirname(__FILE__));
+//require '../public_directory/controller/TaskController.php';
+chdir(ROOT_PATH);
+//die(var_dump(ROOT_PATH . '/controller/TaskController.php'));
+require ROOT_PATH . '\controller\TaskController.php';
+
+
+?>
 <html>
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Colégio Educandus</title>
+		<title>App Lista Tarefas</title>
 
+		<script type="text/javascript" src="js/scripit.js"></script>
 		<link rel="stylesheet" href="view/css/style.css">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
@@ -23,103 +34,77 @@
         <div id="navbarCollapse" class="collapse navbar-collapse">	
             <ul class="nav navbar-nav ml-auto">
 				<li class="nav-item ">
-                    <a href="#" class="nav-link">Home</a>
+                    <a href="index.php" class="nav-link">Home</a>
                 </li>
                
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Professores</a>
                     <div class="dropdown-menu dropdown-menu-right">
-                        <a href="professor_register.php" class="dropdown-item">Cadastrar</a>
+                        <a href="registro_professor.php" class="dropdown-item">Cadastrar</a>
 						<div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">Exibir todos</a>
-                        <div class="dropdown-divider"></div>
-                        <a href="nova_tarefa.php"class="dropdown-item">Tarefas</a>
+                        <a href="lista_professores.php" class="dropdown-item">Exibir todos</a>
                     </div>
                 </li>
 				<li class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Aluno</a>
                     <div class="dropdown-menu dropdown-menu-right">
-                        <a href="student_register.php" class="dropdown-item">Cadastrar</a>
+                        <a href="registro_aluno.php" class="dropdown-item">Cadastrar</a>
 						<div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">Exibir todos</a>
-                        <div class="dropdown-divider"></div>
-                        <a href="todas_tarefas.php"class="dropdown-item">Tarefas</a>
+                        <a href="lista_alunos.php" class="dropdown-item">Exibir todos</a>
                     </div>
                 </li>
 				<li class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Disciplina</a>
                     <div class="dropdown-menu dropdown-menu-right">
-                        <a href="discipline_register.php" class="dropdown-item">Cadastrar</a>
+                        <a href="registro_disciplina.php" class="dropdown-item">Cadastrar</a>
 						<div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">Exibir todas</a>
-                       
+                        <a href="lista_disciplina.php" class="dropdown-item">Exibir todas</a>  
                     </div>
                 </li>
-				<li class="nav-item dropdown">
+                <li class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Turma</a>
                     <div class="dropdown-menu dropdown-menu-right">
-                        <a href="classes_register.php" class="dropdown-item">Cadastrar</a>
+                        <a href="registro_turma.php" class="dropdown-item">Cadastrar</a>
 						<div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">Exibir todas</a>
+                        <a href="lista_turmas.php" class="dropdown-item">Exibir todas</a>
                     </div>
                 </li>
             </ul>
         </div>
     </nav>
 </div>
-		<?php if(isset($_GET['include']) && $_GET['include'] == 1): ?>
-			<div class="bg-success pt-2 text-white d-flex justify-content-center">
-					<h5>Professor inserido com sucesso</h5>
-			</div>
-		<?php endif ?>
+
 		<div class="container app">
 			<div class="row">
-				<div class="col-md-3 menu">
+				<div class="col-sm-3 menu">
 					<ul class="list-group">
-						<li class="list-group-item active"><a href="professor_register.php">Cadastro</a></li>
-						<li class="list-group-item"><a href="#">Todos os Professores</a></li>
-						<li class="list-group-item "><a href="nova_tarefas.php">Cadastrar Tarefa</a></li>
-						<li class="list-group-item"><a href=todas_tarefas.php">Todas Tarefas</a></li>
-						<li class="list-group-item"><a href="PeddingTasks.php">Tarefas pendentes</a></li>
+						<li class="list-group-item"><a href="index.php">Tarefas pendentes</a></li>
+						<li class="list-group-item"><a href="registro_professor.php">Professores</a></li>
+						<li class="list-group-item"><a href="student_register.php">Estudante</a></li>
+						<li class="list-group-item"><a href="nova_tarefa.php">Nova tarefa</a></li>
+						<li class="list-group-item active"><a href="#">Todas tarefas</a></li>
 					</ul>
 				</div>
 
-				<div class="col-md-9">
+				<div class="col-sm-9">
 					<div class="container pagina">
 						<div class="row">
 							<div class="col">
-								<h4>Matrícula</h4>
+								<h4>Todas tarefas</h4>
 								<hr />
-
-								<form method="post" action="controller\ProfessorController.php?action=insert">
-									<div class="form-group">
-									<div class ="row">
-										<div class = "col-md-12">
-										<label>Nome:</label>
-										<input type="text" class="form-control" name="name" placeholder="">
+									<?php foreach($tasks as $index => $task): ?>
+											<div class="row mb-3 d-flex align-items-center tarefa">
+										<div class="col-sm-9" id="task_<?= $task->id ?>"><?= $task->task ?> (<?= $task->name ?>) (<?= $task->status ?>) </div>
+										<div class="col-sm-3 mt-2 d-flex justify-content-between">
+											<i class="fas fa-trash-alt fa-lg text-danger" onclick="remove(<?= $task->id ?>)"></i>
+											<?php if($task->status == 'Pendente'): ?>
+											<i class="fas fa-edit fa-lg text-info" onclick="edit(<?= $task->id ?>, '<?= $task->task ?>' )"></i>
+											<i class="fas fa-check-square fa-lg text-success" onclick="checkDone(<?= $task->id ?>)"></i>
+											<?php endif?>
 										</div>
-
-										<div class = "col-md-3" >
-										<label>Data de Nascimento:</label>
-										<input type="text" class="form-control" name="bornRegister" placeholder="">
-										
 										</div>
-
-										<div class = "col-md-3">
-										<label>Gênero:</label>
-										<input type="text" class="form-control" name="gender" placeholder="">
-										</div>
-										
-										<div class = "col-md-6">
-										<label>CPF:</label>
-										<input type="text" class="form-control" name="cpf" placeholder="">
-										</div>
-
-									</div>
-									</div>
-
-									<button class="btn btn-success">Cadastrar</button>
-								</form>
+								   <?php endforeach ?>
+								
 							</div>
 						</div>
 					</div>

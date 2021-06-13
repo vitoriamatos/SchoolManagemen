@@ -13,16 +13,21 @@ class TaskService {
     
 
     public function insert(){
-        $query = 'insert into tasks(task)values(:task)';
+        $query = 'insert into tasks(task, discipline)values(?,?)';
         $stmt = $this->connection->prepare($query);
-        $stmt->bindValue(':task', $this->task->__get('task'));
+        $stmt->bindValue(1, $this->task->__get('task'));
+        $stmt->bindValue(2, $this->task->__get('discipline'));
         $stmt->execute();
     }
 
     public function backup(){
-        $query = 'SELECT t.id, s.status, t.task 
+        $query = 'SELECT t.id, d.name,s.status, t.task
                   FROM tasks AS t
-                  LEFT JOIN tb_status AS s ON (t.id_status = s.id )';
+                  LEFT JOIN disciplines AS d ON (t.discipline = d.id )
+                  LEFT JOIN tb_status AS s ON (t.id_status = s.id )
+                  
+                  ';
+                  //LEFT JOIN tb_status AS s ON (t.id_status = s.id )
         $stmt = $this->connection->prepare($query);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_OBJ); // for object array return 

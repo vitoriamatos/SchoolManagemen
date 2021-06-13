@@ -3,9 +3,6 @@
 class ClassesService {
     
     private $connection;
-    private $discipline;
-    private $student;
-    private $professor;
     private $classes;
 
 /*
@@ -25,11 +22,11 @@ class ClassesService {
     }
 
     public function insert(){
-        $query = 'insert into  classes(name, code, professor)values(?,?,?)';
+        $query = 'insert into classes(name, code, professor)values(?,?,?)';
         $stmt = $this->connection->prepare($query);
-        $stmt->bindValue(1, $this->professor->__get('name'));
-        $stmt->bindValue(2, $this->professor->__get('code'));
-        $stmt->bindValue(3, $this->professor->__get('professor'));
+        $stmt->bindValue(1, $this->classes->__get('name'));
+        $stmt->bindValue(2, $this->classes->__get('code'));
+        $stmt->bindValue(3, $this->classes->__get('professor'));
         $stmt->execute();
     }
 

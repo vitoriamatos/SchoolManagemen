@@ -6,6 +6,7 @@ private $id;
 private $id_status;
 private $task;
 private $date_register;
+private $discipline;
 
 
 public function  __get($atribute){

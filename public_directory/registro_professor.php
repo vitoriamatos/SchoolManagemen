@@ -1,9 +1,3 @@
-<?php
-$action = 'recover';
-define('ROOT_PATH', dirname(__FILE__));
-chdir(ROOT_PATH);
-require ROOT_PATH . '\controller\ProfessorController.php';
-?>
 
 <html>
 	<head>
@@ -29,35 +23,39 @@ require ROOT_PATH . '\controller\ProfessorController.php';
         <div id="navbarCollapse" class="collapse navbar-collapse">	
             <ul class="nav navbar-nav ml-auto">
 				<li class="nav-item ">
-                    <a href="#" class="nav-link">Home</a>
+                    <a href="index.php" class="nav-link">Home</a>
                 </li>
                
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Professores</a>
                     <div class="dropdown-menu dropdown-menu-right">
-                        <a href="professor_register.php" class="dropdown-item">Cadastrar</a>
+                        <a href="registro_professor.php" class="dropdown-item">Cadastrar</a>
 						<div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">Exibir todos</a>
-                        <div class="dropdown-divider"></div>
-                        <a href="nova_tarefa.php"class="dropdown-item">Tarefas</a>
+                        <a href="lista_professores.php" class="dropdown-item">Exibir todos</a>
                     </div>
                 </li>
 				<li class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Aluno</a>
                     <div class="dropdown-menu dropdown-menu-right">
-                        <a href="student_register.php" class="dropdown-item">Cadastrar</a>
+                        <a href="registro_aluno.php" class="dropdown-item">Cadastrar</a>
 						<div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">Exibir todos</a>
-                        <div class="dropdown-divider"></div>
-                        <a href="todas_tarefas.php"class="dropdown-item">Tarefas</a>
+                        <a href="lista_alunos.php" class="dropdown-item">Exibir todos</a>
                     </div>
                 </li>
 				<li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Disciplina</a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a href="registro_disciplina.php" class="dropdown-item">Cadastrar</a>
+						<div class="dropdown-divider"></div>
+                        <a href="lista_disciplina.php" class="dropdown-item">Exibir todas</a>  
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Turma</a>
                     <div class="dropdown-menu dropdown-menu-right">
-                        <a href="classes_register.php" class="dropdown-item">Cadastrar</a>
+                        <a href="registro_turma.php" class="dropdown-item">Cadastrar</a>
 						<div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">Exibir todas</a> 
+                        <a href="lista_turmas.php" class="dropdown-item">Exibir todas</a>
                     </div>
                 </li>
             </ul>
@@ -66,18 +64,18 @@ require ROOT_PATH . '\controller\ProfessorController.php';
 </div>
 		<?php if(isset($_GET['include']) && $_GET['include'] == 1): ?>
 			<div class="bg-success pt-2 text-white d-flex justify-content-center">
-					<h5>Turma inserida com sucesso</h5>
+					<h5>Professor inserido com sucesso</h5>
 			</div>
 		<?php endif ?>
 		<div class="container app">
 			<div class="row">
 				<div class="col-md-3 menu">
 					<ul class="list-group">
-						<li class="list-group-item active"><a href="student_register.php">Cadastro</a></li>
-						<li class="list-group-item"><a href="#">Todos os Alunos</a></li>
-						<li class="list-group-item "><a href="todas_tarefas.php">Todas tarefas</a></li>
-						<li class="list-group-item"><a href="index.php">Tarefas pendentes</a></li>
-
+						<li class="list-group-item active"><a href="registro_professor.php">Cadastro</a></li>
+						<li class="list-group-item"><a href="lista_professores.php">Todos os Professores</a></li>
+						<li class="list-group-item "><a href="registro_tarefa.php">Cadastrar Tarefa</a></li>
+						<li class="list-group-item"><a href="lista_tarefas.php">Todas Tarefas</a></li>
+						<li class="list-group-item"><a href="tarefa_pendente.php">Tarefas pendentes</a></li>
 					</ul>
 				</div>
 
@@ -85,10 +83,10 @@ require ROOT_PATH . '\controller\ProfessorController.php';
 					<div class="container pagina">
 						<div class="row">
 							<div class="col">
-								<h4>Matrícula</h4>
+								<h4>Matrícula de Professores</h4>
 								<hr />
 
-								<form method="post" action="controller\ClassesController.php?action=insert">
+								<form method="post" action="controller\ProfessorController.php?action=insert">
 									<div class="form-group">
 									<div class ="row">
 										<div class = "col-md-12">
@@ -97,20 +95,19 @@ require ROOT_PATH . '\controller\ProfessorController.php';
 										</div>
 
 										<div class = "col-md-3" >
-										<label>Código:</label>
-										<input type="text" class="form-control" name="code" placeholder="">
+										<label>Data de Nascimento:</label>
+										<input type="text" class="form-control" name="bornRegister" placeholder="">
 										
 										</div>
 
-										<div class = "col-md-6">
-										<label>Professores:</label>
-										<select class="form-control" name="professor">
+										<div class = "col-md-3">
+										<label>Gênero:</label>
+										<input type="text" class="form-control" name="gender" placeholder="">
+										</div>
 										
-											<?php foreach ($professors as $index => $value): ?>
-												<option value="<?=$index?>"><?=$value->name?></option>
-											<?php endforeach ?>
-										</select>
-													
+										<div class = "col-md-6">
+										<label>CPF:</label>
+										<input type="text" class="form-control" name="cpf" placeholder="">
 										</div>
 
 									</div>

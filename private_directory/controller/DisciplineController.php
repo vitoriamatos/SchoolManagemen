@@ -7,34 +7,36 @@ if($action == 'insert'){
     require "..\..\private_directory\models\Discipline.php";
     require "..\..\private_directory\services\DisciplineService.php";
     require "..\..\private_directory\Connection.php";
-    $professor = new Professor();
+   
     $discipline = new Discipline(); 
     $discipline->__set('name', $_POST['name']);
-    $discipline->__set('schedule', $_POST['schedule']);
+    $discipline->__set('code',  $_POST['code']);
     $discipline->__set('days', $_POST['days']);
+    $discipline->__set('schedule', $_POST['schedule']);
     $discipline->__set('professor', $_POST['professor']);
-    $discipline->__set('student', $_POST['student']);
-   
-
+    
+  
     $connection = new Connection();
 
     $disciplineService = new DisciplineService($connection, $discipline);
     $disciplineService->insert();
 
 
-    header('Location: ..\discipline_register.php?include=1');
+    header('Location: ..\registro_disciplina.php?include=1');
 
 
-}else if($action == 'recover'){
+}
 
-    require "..\private_directory\models\Student.php";
-    require "..\private_directory\services\StudentService.php";
+if($action == 'recover'){
+
+    require "..\private_directory\models\Discipline.php";
+    require "..\private_directory\services\DisciplineService.php";
     require "..\private_directory\Connection.php";
     
-    $professor = new Student();
+    $discipline = new Discipline();
     $connection = new Connection();
-    $professorService = new StudentService($connection, $professor);
-    $professors = $professorService->backup();
+    $disciplineService = new DisciplineService($connection, $discipline);
+    $disciplines = $disciplineService->backup();
 
 } else if ($action == 'update'){
     require "..\..\private_directory\models\Student.php";

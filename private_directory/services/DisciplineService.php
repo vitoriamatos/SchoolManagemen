@@ -13,19 +13,19 @@ class DisciplineService {
     
 
     public function insert(){
-        $query = 'insert into disciplines(name, schedule, days, professor)values(?,?,?,?,?)';
+        $query = 'insert into disciplines(name, code, days, schedule, professor)values(?,?,?,?,?)';
         $stmt = $this->connection->prepare($query);
-        $stmt->bindValue(1, $this->professor->__get('name'));
-        $stmt->bindValue(2, $this->professor->__get('schedule'));
-        $stmt->bindValue(3, $this->professor->__get('gender'));
-        $stmt->bindValue(4, $this->professor->__get('days'));
-        $stmt->bindValue(5, $this->professor->__get('professor'));
+        $stmt->bindValue(1, $this->discipline->__get('name'));
+        $stmt->bindValue(2, $this->discipline->__get('code'));
+        $stmt->bindValue(3, $this->discipline->__get('days'));
+        $stmt->bindValue(4, $this->discipline->__get('schedule'));       
+        $stmt->bindValue(5, $this->discipline->__get('professor'));
         $stmt->execute();
     }
 
     public function backup(){
-        $query = 'SELECT student.id, student.name, student.gender, student.bornRegister, student.cpf 
-                  FROM students AS student';
+        $query = 'SELECT name, id FROM disciplines ';
+
                 //  LEFT JOIN tb_status AS s ON (t.id_status = s.id )';
         $stmt = $this->connection->prepare($query);
         $stmt->execute();
