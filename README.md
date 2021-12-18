@@ -24,8 +24,7 @@ os objetos se relacionam entre si.
 
 ## Instalação
 
-Se você já possui todos os pré requisitos listados, pode clonar este repositório para sua pasta local, pode ser em qualquer parte do seu computador, 
-não é necessário que seja clonado no htdocs do xampp, pois iremos posteriormente configurar uma porta para o servidor local.
+Se você já possui todos os pré requisitos listados, pode clonar este repositório para sua pasta local, no diretório do XAMPP;
 
  🧭 Rodando o Backend (servidor)
  
@@ -33,14 +32,8 @@ não é necessário que seja clonado no htdocs do xampp, pois iremos posteriorme
 
       # Clone este repositório
       $ git clone https://github.com/vitoriamatos/SchoolManagement.git
-      
-      # Acesse a pasta do projeto no terminal/cmd e em seguida acesse o subdiretorio public
-      $ cd public
-      
-      # Coloque o comando para iniciar o servidor configurando na porta 8080
-      - php -S localhost:8080
-      
-      # O servidor inciará na porta:8080- acesse http://localhost:8080
+              
+      # Acesse em http://localhost/SchoolManagement
 
 
   🎲 Configurando o banco de dados
